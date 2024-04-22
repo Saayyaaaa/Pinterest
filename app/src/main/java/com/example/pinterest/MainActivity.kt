@@ -10,5 +10,6 @@ class MainActivity : AppCompatActivity() {
 
         //Azamat
         //Timka
+        //Tima's commit
     }
 }
