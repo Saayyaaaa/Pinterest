@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 //    id("kotlin-kapt")    //Added Dagger
 }
 
@@ -44,6 +45,8 @@ android {
 
 dependencies {
 
+    implementation("com.google.firebase:firebase-database:20.3.1")
+    implementation("androidx.activity:activity:1.8.0")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
