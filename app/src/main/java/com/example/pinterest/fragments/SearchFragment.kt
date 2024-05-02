@@ -43,7 +43,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun setupUI() {
-        binding.recView.adapter = adapter
+        binding.SearchRes.adapter = adapter
     }
 
     private fun fetchData(query: String) {
