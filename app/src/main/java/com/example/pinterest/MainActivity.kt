@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         replaceFragment(HomeFragment())
 
         binding.bottomNavigationView.setOnItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
 
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.search -> replaceFragment(SearchFragment())
@@ -31,23 +31,20 @@ class MainActivity : AppCompatActivity() {
                 else -> {
 
                 }
-
             }
             true
-
         }
 
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container_view, SearchFragment())
             .commit()
 
-
     }
 
-    private fun replaceFragment(fragment: Fragment){
+    private fun replaceFragment(fragment: Fragment) {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout,fragment)
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
 
     }
