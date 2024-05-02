@@ -14,6 +14,10 @@ interface PinterestService {
 
 
 
+
     fun getPinsById(): Call<PinterestApiResponse>
+
+    suspend fun getPinsById(): PinterestPins
+
 
 }
