@@ -5,14 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
 import com.example.pinterest.adapter.HomeAdapter
 import com.example.pinterest.databinding.FragmentHomeBinding
-import com.example.pinterest.models.PinterestPins
 import com.example.pinterest.network.PinterestApiClient
 import com.example.pinterest.network.PinterestService
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.pinterest.viewmodel.PinterestViewModel
+
 
 class HomeFragment : Fragment() {
 
@@ -25,9 +24,12 @@ class HomeFragment : Fragment() {
         HomeAdapter()
     }
 
+
     private val pinterestService: PinterestService by lazy {
         PinterestApiClient.instance
     }
+
+    private val viewModel: PinterestViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,10 +41,18 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupUI()
+
+        binding.HomeRes.adapter = adapter
+
+        viewModel.fetchPinsList()
+
+        viewModel.pinsList.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+
+
+
     }
 
-    private fun setupUI() {
-        binding.HomeRes.adapter = adapter
-    }
+
 }
