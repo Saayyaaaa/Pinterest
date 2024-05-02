@@ -5,9 +5,13 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/pin_img"
+        android:id="@+id/pin_img_home"
         android:layout_width="171dp"
         android:layout_height="wrap_content"
         tools:src="@drawable/search_placeholder" />
+    <TextView
+        android:id="@+id/pin_txt_home"
+        android:layout_width="171dp"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
