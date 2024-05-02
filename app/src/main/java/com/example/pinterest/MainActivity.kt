@@ -35,10 +35,6 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container_view, SearchFragment())
-            .commit()
-
     }
 
     private fun replaceFragment(fragment: Fragment) {
