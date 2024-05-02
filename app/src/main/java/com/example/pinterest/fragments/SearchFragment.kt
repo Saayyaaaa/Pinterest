@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.pinterest.adapter.PinterestAdapter
+import com.example.pinterest.adapter.SearchAdapter
 import com.example.pinterest.databinding.FragmentSearchBinding
 import com.example.pinterest.network.PinterestApiClient
 import com.example.pinterest.network.PinterestService
@@ -18,11 +18,11 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter: PinterestAdapter by lazy {
-        PinterestAdapter()
+    private val adapter: SearchAdapter by lazy {
+        SearchAdapter()
     }
 
-    private val celebrityService: PinterestService by lazy {
+    private val pinterestService: PinterestService by lazy {
         PinterestApiClient.instance
     }
 

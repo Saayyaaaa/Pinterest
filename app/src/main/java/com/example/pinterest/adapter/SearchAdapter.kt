@@ -6,17 +6,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pinterest.databinding.FragmentSearchItemsBinding
-import com.example.pinterest.models.ItemsForSearch
+import com.example.pinterest.models.PinterestPins
 
-class PinterestAdapter :
-    ListAdapter<ItemsForSearch, PinterestAdapter.ViewHolder>(PinterestDiffUtil()) {
-//    private val pizzaList: ArrayList<ItemsForSearch> = ArrayList()
+class SearchAdapter :
+    ListAdapter<PinterestPins, SearchAdapter.ViewHolder>(PinterestDiffUtil()) {
 
-//    fun setData(pizazz: ArrayList<ItemsForSearch>) {
-//        pizzaList.clear()
-//        pizzaList.addAll(pizazz)
-//        notifyDataSetChanged()
-//    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             FragmentSearchItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -29,18 +23,18 @@ class PinterestAdapter :
 
 
     inner class ViewHolder(private val binding: FragmentSearchItemsBinding) :
-            RecyclerView.ViewHolder(binding.root) {
+        RecyclerView.ViewHolder(binding.root) {
 
         private val context = binding.root.context
 
-        fun bind(search: ItemsForSearch) {
-                    with(binding) {
-                        searchTitle.text = search.name
-                        Glide.with(context)
-                            .load(search.imageLink)
-                            .into(itemImage)
-                    }
-                }
-
+        fun bind(search: PinterestPins) {
+            with(binding) {
+                searchTitle.text = search.name
+                Glide.with(context)
+                    .load(search.imageLink)
+                    .into(itemImage)
             }
+        }
+
+    }
 }
