@@ -1,14 +1,14 @@
 package com.example.pinterest.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.pinterest.models.ItemsForSearch
+import com.example.pinterest.models.PinterestPins
 
-class PinterestDiffUtil: DiffUtil.ItemCallback<ItemsForSearch>() {
-    override fun areItemsTheSame(oldItem: ItemsForSearch, newItem: ItemsForSearch): Boolean {
+class PinterestDiffUtil: DiffUtil.ItemCallback<PinterestPins>() {
+    override fun areItemsTheSame(oldItem: PinterestPins, newItem: PinterestPins): Boolean {
         return oldItem.name == newItem.name
     }
 
-    override fun areContentsTheSame(oldItem: ItemsForSearch, newItem: ItemsForSearch): Boolean {
+    override fun areContentsTheSame(oldItem: PinterestPins, newItem: PinterestPins): Boolean {
         return oldItem == newItem
     }
 

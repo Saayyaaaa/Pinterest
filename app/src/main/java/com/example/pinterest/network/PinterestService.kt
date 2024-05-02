@@ -1,6 +1,6 @@
 package com.example.pinterest.network
 
-import com.example.pinterest.models.ItemsForSearch
+import com.example.pinterest.models.PinterestPins
 import retrofit2.http.GET
 import retrofit2.http.Headers
 
@@ -11,6 +11,6 @@ interface PinterestService {
 
 
 
-    suspend fun fetchCelebrityList(): ItemsForSearch
+    suspend fun getPinsById(): PinterestPins
 
 }
