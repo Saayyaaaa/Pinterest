@@ -20,11 +20,11 @@ class AccountFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         val button = view.findViewById<Button>(R.id.settings)
         button.setOnClickListener {
-            val intent = Intent(context, SettingActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(context, SettingActivity::class.java))
         }
     }
 }
