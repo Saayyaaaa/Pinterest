@@ -37,6 +37,7 @@ class HomeAdapter :
         fun bind(homePin: PinterestPins) {
             with(binding) {
                 pinTxtHome.text = homePin.name
+
                 Glide.with(context)
                     .load(homePin.imageLink)
                     .into(pinImgHome)
