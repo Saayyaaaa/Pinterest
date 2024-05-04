@@ -49,6 +49,8 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+
+
     private fun loginUser(username: String, password: String){
         databaseReference.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(object : ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.P)
@@ -60,7 +62,9 @@ class LoginActivity : AppCompatActivity() {
                         databaseReference.child(id!!).setValue(userData)
                         if (userData != null && userData.password == password){
                             Toast.makeText(this@LoginActivity, "login Successful", Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            val mainIntent = Intent(this@LoginActivity, MainActivity::class.java)
+                            mainIntent.putExtra("USERNAME", username)
+                            startActivity(mainIntent)
                             finish()
                             return
                         }
