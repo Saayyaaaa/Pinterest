@@ -3,42 +3,36 @@ package com.example.pinterest.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.pinterest.models.PinterestPins
 import com.example.pinterest.network.PinterestApiClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class PinterestViewModel : ViewModel() {
 
-    private val _pinsList = MutableLiveData<ArrayList<PinterestPins>>(arrayListOf())
-    val pinsList: LiveData<ArrayList<PinterestPins>> get() = _pinsList
+    private val _pinsList = MutableLiveData<PinterestPins>()
+    val pinsList: LiveData<PinterestPins> get() = _pinsList
 
 
     fun fetchPinsList() {
-        val client = PinterestApiClient.instance
-        val response = client.getPinsById()
-
-    response.enqueue(object : Callback<PinterestPins>{
-        override fun onResponse(
-            call: Call<PinterestPins>,
-            response: Response<PinterestPins>
-        ) {
-
-            response.body()?.let {
-                _pinsList.value = arrayListOf()
+        viewModelScope.launch {
+            try {
+                val pins = getPins()
+                _pinsList.value = pins
+            } catch (e: Exception) {
+                // Handle error
             }
-
         }
-
-        override fun onFailure(call: Call<PinterestPins>, t: Throwable) {
-
-        }
-
-    })
-
     }
 
+    private suspend fun getPins(): PinterestPins {
+        return withContext(Dispatchers.IO) {
+            val client = PinterestApiClient.instance
+            client.getPinsById()
+        }
+    }
 
 
 }

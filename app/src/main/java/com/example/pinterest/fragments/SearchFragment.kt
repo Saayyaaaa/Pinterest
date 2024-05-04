@@ -3,18 +3,17 @@ package com.example.pinterest.fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.pinterest.adapter.SearchAdapter
 import com.example.pinterest.databinding.FragmentSearchBinding
-import com.example.pinterest.models.PinterestPins
 import com.example.pinterest.network.PinterestApiClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class SearchFragment : Fragment() {
@@ -60,29 +59,16 @@ class SearchFragment : Fragment() {
         })
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun searchForItems(query: String) {
-        pinterestService.getCatsByName(query).enqueue(object : Callback<List<PinterestPins>> {
-            override fun onResponse(
-                call: Call<List<PinterestPins>>,
-                response: Response<List<PinterestPins>>
-            ) {
-                if (response.isSuccessful) {
-                    val pins = response.body()
-                    pins?.let {
-                        adapter.submitList(it)
-                    }
-
-                } else {
-                    TODO()
-                }
-
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                val pins = pinterestService.getCatsByName(query)
+                adapter.submitList(pins)
+            } catch (e: Exception) {
+                // Handle error
             }
-
-            override fun onFailure(call: Call<List<PinterestPins>>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
+        }
     }
 
 

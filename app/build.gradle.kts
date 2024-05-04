@@ -56,6 +56,9 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.7.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+
 //    implementation ("com.google.dagger:dagger:2.28.3") // Dagger
 //    kapt ("com.google.dagger:dagger-compiler:2.x") // Dagger
     testImplementation("junit:junit:4.13.2")
