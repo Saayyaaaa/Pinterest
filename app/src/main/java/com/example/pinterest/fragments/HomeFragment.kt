@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.example.pinterest.adapter.HomeAdapter
 import com.example.pinterest.databinding.FragmentHomeBinding
 import com.example.pinterest.network.PinterestApiClient
@@ -47,7 +46,7 @@ class HomeFragment : Fragment() {
         viewModel.fetchPinsList()
 
         viewModel.pinsList.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+//            adapter.submitList(it)
         }
 
 
