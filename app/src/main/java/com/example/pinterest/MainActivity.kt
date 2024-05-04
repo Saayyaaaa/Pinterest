@@ -13,36 +13,44 @@ import com.example.pinterest.fragments.SearchFragment
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var username: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(HomeFragment())
+
+        // Get the username passed from LoginActivity
+        username = intent.getStringExtra("USERNAME")
+
+        replaceFragment(HomeFragment())  // Load the HomeFragment by default
 
         binding.bottomNavigationView.setOnItemSelectedListener {
-            when (it.itemId) {
-
-                R.id.home -> replaceFragment(HomeFragment())
-                R.id.search -> replaceFragment(SearchFragment())
-                R.id.create -> replaceFragment(CreateFragment())
-                R.id.message -> replaceFragment(MessageFragment())
-                R.id.account -> replaceFragment(AccountFragment())
-
-                else -> {
-
+            val fragment = when (it.itemId) {
+                R.id.home -> HomeFragment()
+                R.id.search -> SearchFragment()
+                R.id.create -> CreateFragment()
+                R.id.message -> MessageFragment()
+                R.id.account -> {
+                    val accountFragment = AccountFragment()
+                    // Set the username as an argument to AccountFragment if available
+                    username?.let { username ->
+                        accountFragment.arguments = Bundle().apply {
+                            putString("USERNAME", username)
+                        }
+                    }
+                    accountFragment
                 }
+                else -> return@setOnItemSelectedListener false
             }
+            replaceFragment(fragment)
             true
         }
-
-
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout, fragment)
-        fragmentTransaction.commit()
-
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.frame_layout, fragment)
+            .commit()
     }
 }

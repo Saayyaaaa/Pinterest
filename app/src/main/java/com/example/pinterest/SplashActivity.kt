@@ -14,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
         val uiHandler = Handler(Looper.getMainLooper())
 
         uiHandler.postDelayed({
-            val intent = Intent(this@SplashActivity, MainActivity::class.java)
+            val intent = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }, 3000)
