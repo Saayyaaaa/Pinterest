@@ -20,7 +20,7 @@ Welcome to PinTerest, the ultimate inspiration hub! PinTerest is a next-generati
 
 PinTerest is brought to you by a passionate and dedicated team of three individuals, each bringing their unique skills and expertise to the table:
 
-1. **Amangeldinova Saya** - UX/UI Designer, Saya is responsible for crafting PinTerest's sleek and intuitive user interface, ensuring a seamless and delightful user experience for all.
+1. **Amangeldinova Saya** - UX/UI Designer and TeamLeader, Saya is responsible for crafting PinTerest's sleek and intuitive user interface, ensuring a seamless and delightful user experience for all.
 
 2. **Tletay Azamat** - Backender, Azamat is the mastermind behind PinTerest's robust and scalable backend infrastructure, ensuring smooth performance and reliability for all users.
 
