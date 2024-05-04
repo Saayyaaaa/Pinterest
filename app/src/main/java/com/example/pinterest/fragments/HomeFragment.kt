@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.pinterest.adapter.HomeAdapter
 import com.example.pinterest.databinding.FragmentHomeBinding
 import com.example.pinterest.network.PinterestApiClient
@@ -14,7 +15,6 @@ import com.example.pinterest.viewmodel.PinterestViewModel
 
 
 class HomeFragment : Fragment() {
-
 
 
     private var _binding: FragmentHomeBinding? = null
@@ -30,12 +30,12 @@ class HomeFragment : Fragment() {
     }
 
     private val viewModel: PinterestViewModel by viewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -49,7 +49,6 @@ class HomeFragment : Fragment() {
         viewModel.pinsList.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
-
 
 
     }

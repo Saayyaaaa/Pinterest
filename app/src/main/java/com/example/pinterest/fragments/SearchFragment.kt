@@ -9,8 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.pinterest.adapter.SearchAdapter
 import com.example.pinterest.databinding.FragmentSearchBinding
+import com.example.pinterest.models.PinterestPins
 import com.example.pinterest.network.PinterestApiClient
-import com.example.pinterest.network.PinterestService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 
 class SearchFragment : Fragment() {
@@ -22,9 +26,7 @@ class SearchFragment : Fragment() {
         SearchAdapter()
     }
 
-    private val pinterestService: PinterestService by lazy {
-        PinterestApiClient.instance
-    }
+    private val pinterestService = PinterestApiClient.instance
 
 
     override fun onCreateView(
@@ -38,7 +40,6 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupUI()
-        fetchData("")
         setupSearch()
     }
 
@@ -46,23 +47,43 @@ class SearchFragment : Fragment() {
         binding.SearchRes.adapter = adapter
     }
 
-    private fun fetchData(query: String) {
-
-    }
 
     private fun setupSearch() {
         binding.search.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                fetchData(s.toString())
+                searchForItems(s.toString())
             }
 
             override fun afterTextChanged(s: Editable?) {}
         })
     }
 
+    private fun searchForItems(query: String) {
+        pinterestService.getCatsByName(query).enqueue(object : Callback<List<PinterestPins>> {
+            override fun onResponse(
+                call: Call<List<PinterestPins>>,
+                response: Response<List<PinterestPins>>
+            ) {
+                if (response.isSuccessful) {
+                    val pins = response.body()
+                    pins?.let {
+                        adapter.submitList(it)
+                    }
 
+                } else {
+                    TODO()
+                }
+
+            }
+
+            override fun onFailure(call: Call<List<PinterestPins>>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
 
 
 }

@@ -3,8 +3,6 @@ package com.example.pinterest.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.pinterest.models.PinterestApi
-import com.example.pinterest.models.PinterestApiResponse
 import com.example.pinterest.models.PinterestPins
 import com.example.pinterest.network.PinterestApiClient
 import retrofit2.Call
@@ -21,21 +19,19 @@ class PinterestViewModel : ViewModel() {
         val client = PinterestApiClient.instance
         val response = client.getPinsById()
 
-    response.enqueue(object : Callback<PinterestApiResponse>{
+    response.enqueue(object : Callback<PinterestPins>{
         override fun onResponse(
-            call: Call<PinterestApiResponse>,
-            response: Response<PinterestApiResponse>
+            call: Call<PinterestPins>,
+            response: Response<PinterestPins>
         ) {
 
-            response.body()?.let { it ->
-                _pinsList.value = ArrayList(it.results.map {
-                    PinterestApi.toPins(it)
-                })
+            response.body()?.let {
+                _pinsList.value = arrayListOf()
             }
 
         }
 
-        override fun onFailure(call: Call<PinterestApiResponse>, t: Throwable) {
+        override fun onFailure(call: Call<PinterestPins>, t: Throwable) {
 
         }
 
