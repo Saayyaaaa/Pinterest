@@ -29,7 +29,7 @@ class SearchAdapter :
 
         fun bind(search: PinterestPins) {
             with(binding) {
-                searchTitle.text = search.name
+//                searchTitle.text = search.name
 
                 Glide.with(context)
                     .load(search.imageLink)
