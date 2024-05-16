@@ -21,9 +21,7 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter: SearchAdapter by lazy {
-        SearchAdapter()
-    }
+    private val adapter: SearchAdapter by lazy { SearchAdapter() }
 
     private val pinterestService = PinterestApiClient.instance
 
@@ -63,8 +61,17 @@ class SearchFragment : Fragment() {
     private fun searchForItems(query: String) {
         GlobalScope.launch(Dispatchers.Main) {
             try {
-                val pins = pinterestService.getCatsByName(query)
-                adapter.submitList(pins)
+                val response = pinterestService.getCatsByName(query)
+                if (response.isSuccessful) {
+                    val pins = response.body()
+                    pins?.let {
+                        adapter.submitList(it)
+
+                    }
+                } else {
+                    // Handle unsuccessful response
+                }
+
             } catch (e: Exception) {
                 // Handle error
             }
