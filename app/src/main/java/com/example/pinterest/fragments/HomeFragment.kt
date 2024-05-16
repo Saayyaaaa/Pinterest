@@ -20,6 +20,7 @@ class HomeFragment : Fragment() {
     // Initializing PinterestViewModel using viewModels delegate
     private val viewModel: PinterestViewModel by viewModels()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
