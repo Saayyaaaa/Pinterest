@@ -1,6 +1,5 @@
 package com.example.pinterest.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -12,25 +11,31 @@ import kotlinx.coroutines.withContext
 
 class PinterestViewModel : ViewModel() {
 
-    private val _pinsList = MutableLiveData<PinterestPins>()
-    val pinsList: LiveData<PinterestPins> get() = _pinsList
+    private val _pinsList = MutableLiveData<List<PinterestPins>>()
+    val pinsList: MutableLiveData<List<PinterestPins>> get() = _pinsList
 
 
-    fun fetchPinsList() {
+    fun fetchPinsList(name: String) {
         viewModelScope.launch {
             try {
-                val pins = getPins()
-                _pinsList.value = pins
+                val pins = getPins(name)
+                _pinsList.postValue(pins)
             } catch (e: Exception) {
                 // Handle error
+                e.printStackTrace()
             }
         }
     }
 
-    private suspend fun getPins(): PinterestPins {
+    private suspend fun getPins(name: String): List<PinterestPins> {
         return withContext(Dispatchers.IO) {
             val client = PinterestApiClient.instance
-            client.getPinsById()
+            val response = client.getCatsByName(name)
+            if (response.isSuccessful) {
+                response.body() ?: emptyList()
+            } else {
+                emptyList()
+            }
         }
     }
 

@@ -2,16 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:orientation="horizontal">
+
 
     <ImageView
         android:id="@+id/pin_img_home"
-        android:layout_width="171dp"
-        android:layout_height="wrap_content"
-        tools:src="@drawable/search_placeholder" />
+        android:layout_width="match_parent"
+        android:layout_height="171dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@null"
+        tools:srcCompat="@drawable/search_placeholder" />
+
+
     <TextView
         android:id="@+id/pin_txt_home"
-        android:layout_width="171dp"
-        android:layout_height="wrap_content"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="Что то такое" />
+
 
 </RelativeLayout>
+

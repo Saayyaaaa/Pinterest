@@ -8,27 +8,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.pinterest.adapter.HomeAdapter
 import com.example.pinterest.databinding.FragmentHomeBinding
-import com.example.pinterest.network.PinterestApiClient
-import com.example.pinterest.network.PinterestService
 import com.example.pinterest.viewmodel.PinterestViewModel
 
 
 class HomeFragment : Fragment() {
 
-
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val adapter: HomeAdapter by lazy { HomeAdapter() }
 
-    private val adapter: HomeAdapter by lazy {
-        HomeAdapter()
-    }
-
-
-    private val pinterestService: PinterestService by lazy {
-        PinterestApiClient.instance
-    }
-
+    // Initializing PinterestViewModel using viewModels delegate
     private val viewModel: PinterestViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,19 +29,22 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.HomeRes.adapter = adapter
-
-        viewModel.fetchPinsList()
-
-        viewModel.pinsList.observe(viewLifecycleOwner) {
-//            adapter.submitList(it)
+        viewModel.pinsList.observe(viewLifecycleOwner) { pins ->
+            pins?.let {
+                adapter.submitList(it)
+            }
         }
 
-
+        // Fetch pins list
+        viewModel.fetchPinsList(" ")
     }
 
 
 }
+
+
