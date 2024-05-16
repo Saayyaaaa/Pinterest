@@ -9,7 +9,7 @@ import com.example.pinterest.databinding.FragmentHomeItemsBinding
 import com.example.pinterest.models.PinterestPins
 
 
-class HomeAdapter :
+class HomeAdapter(private val onImageClick: (String, String) -> Unit) :
     ListAdapter<PinterestPins, HomeAdapter.ViewHolder>(PinterestDiffUtil()) {
 
 
@@ -33,12 +33,19 @@ class HomeAdapter :
 
         fun bind(homePin: PinterestPins) {
 
-                binding.pinTxtHome.text = homePin.name
+            binding.pinTxtHome.text = homePin.name
 
-                Glide.with(context)
-                    .load(homePin.imageLink)
-                    .into(binding.pinImgHome)
+            Glide.with(context)
+                .load(homePin.imageLink)
+                .into(binding.pinImgHome)
 
+            binding.pinImgHome.setOnClickListener {
+                homePin.imageLink?.let { imageUrl ->
+                    homePin.name?.let { imageName ->
+                        onImageClick(imageUrl, imageName)
+                    }
+                }
+            }
         }
 
     }

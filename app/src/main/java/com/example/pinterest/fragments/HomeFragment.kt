@@ -1,11 +1,13 @@
 package com.example.pinterest.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.example.pinterest.ImageDetailActivity
 import com.example.pinterest.adapter.HomeAdapter
 import com.example.pinterest.databinding.FragmentHomeBinding
 import com.example.pinterest.viewmodel.PinterestViewModel
@@ -15,7 +17,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val adapter: HomeAdapter by lazy { HomeAdapter() }
+    private val adapter: HomeAdapter by lazy { HomeAdapter(::openImageDetail) }
 
     // Initializing PinterestViewModel using viewModels delegate
     private val viewModel: PinterestViewModel by viewModels()
@@ -46,6 +48,20 @@ class HomeFragment : Fragment() {
     }
 
 
-}
+    private fun openImageDetail(imageUrl: String, imageName: String) {
+        val intent = Intent(context, ImageDetailActivity::class.java).apply {
+            putExtra("IMAGE_URL", imageUrl)
+            putExtra("IMAGE_NAME", imageName)
+        }
+        startActivity(intent)
+    }
 
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+
+}
 
