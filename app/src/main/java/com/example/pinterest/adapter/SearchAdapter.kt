@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.pinterest.databinding.FragmentSearchItemsBinding
 import com.example.pinterest.models.PinterestPins
 
-class SearchAdapter :
+class SearchAdapter (private val onImageClick: (String, String) -> Unit) :
     ListAdapter<PinterestPins, SearchAdapter.ViewHolder>(PinterestDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,11 +29,19 @@ class SearchAdapter :
 
         fun bind(search: PinterestPins) {
             with(binding) {
-//                searchTitle.text = search.name
+                binding.imageTitle.text = search.name
 
                 Glide.with(context)
                     .load(search.imageLink)
                     .into(itemImage)
+
+                binding.itemImage.setOnClickListener {
+                    search.imageLink?.let { imageUrl ->
+                        search.name?.let { imageTitle ->
+                            onImageClick(imageUrl, imageTitle)
+                        }
+                    }
+                }
             }
         }
 
