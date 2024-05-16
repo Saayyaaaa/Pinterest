@@ -13,17 +13,13 @@ class HomeAdapter :
     ListAdapter<PinterestPins, HomeAdapter.ViewHolder>(PinterestDiffUtil()) {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            FragmentHomeItemsBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
+            FragmentHomeItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
-    override fun onBindViewHolder(holder: HomeAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
@@ -32,16 +28,17 @@ class HomeAdapter :
         private val binding: FragmentHomeItemsBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
+
         private val context = binding.root.context
 
         fun bind(homePin: PinterestPins) {
-            with(binding) {
-                pinTxtHome.text = homePin.name
+
+                binding.pinTxtHome.text = homePin.name
 
                 Glide.with(context)
                     .load(homePin.imageLink)
-                    .into(pinImgHome)
-            }
+                    .into(binding.pinImgHome)
+
         }
 
     }
