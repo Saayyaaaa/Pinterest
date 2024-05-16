@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.example.pinterest.adapter.HomeAdapter
 import com.example.pinterest.databinding.FragmentHomeBinding
 import com.example.pinterest.viewmodel.PinterestViewModel
+//import Kairat Nurtas
 
 
 class HomeFragment : Fragment() {

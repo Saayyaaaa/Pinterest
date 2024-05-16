@@ -50,7 +50,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-
     private fun loginUser(username: String, password: String){
         databaseReference.orderByChild("username").equalTo(username).addListenerForSingleValueEvent(object : ValueEventListener {
             @RequiresApi(Build.VERSION_CODES.P)

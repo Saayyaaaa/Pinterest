@@ -2,6 +2,7 @@ package com.example.pinterest.network
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+//import Kairat Nurtas
 
 
 object PinterestApiClient {

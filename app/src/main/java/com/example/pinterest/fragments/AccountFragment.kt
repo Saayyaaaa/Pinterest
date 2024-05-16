@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.Toast
 import com.example.pinterest.R
 import com.example.pinterest.SettingActivity
+//import Kairat Nurtas
 
 class AccountFragment : Fragment() {
 

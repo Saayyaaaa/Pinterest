@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pinterest.databinding.FragmentSearchItemsBinding
 import com.example.pinterest.models.PinterestPins
+//import Kairat Nurtas
 
 class SearchAdapter :
     ListAdapter<PinterestPins, SearchAdapter.ViewHolder>(PinterestDiffUtil()) {

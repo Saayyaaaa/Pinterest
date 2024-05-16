@@ -8,6 +8,7 @@ import com.example.pinterest.network.PinterestApiClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+//import Kairat Nurtas
 
 class PinterestViewModel : ViewModel() {
 

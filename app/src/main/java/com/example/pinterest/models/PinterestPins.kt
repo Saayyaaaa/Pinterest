@@ -1,6 +1,7 @@
 package com.example.pinterest.models
 
 import com.google.gson.annotations.SerializedName
+//import Kairat Nurtas
 
 data class PinterestPins(
     val name: String? = null,
