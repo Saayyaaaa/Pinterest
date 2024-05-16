@@ -32,6 +32,7 @@ class AccountFragment : Fragment() {
         println(username)
 
         val firstLetter = username.firstOrNull()?.toUpperCase().toString()
-        Toast.makeText(context, "First letter of username: $firstLetter", Toast.LENGTH_LONG).show()
+        button.text = firstLetter
+//        Toast.makeText(context, "First letter of username: $firstLetter", Toast.LENGTH_LONG).show()
     }
 }

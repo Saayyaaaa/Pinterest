@@ -5,5 +5,8 @@
     <string name="find_something_you_need">Find something you need</string>
     <string name="your_account">Your account</string>
     <string name="profile_txt">Profile</string>
-    <string name="button_txt">Button</string>
+    <string name="button_txt">B</string>
+    <string name="pins_txt">Pins</string>
+    <string name="search_saved_idea">Search for your saved ideas</string>
+    <string name="search_pins">Look for interesting things in Pinterest</string>
 </resources>

@@ -7,14 +7,29 @@
     android:orientation="vertical"
     android:padding="20dp">
 
-
-    <EditText
-        android:id="@+id/search"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:autofillHints="" />
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/gray"
+        android:padding="5dp">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/search_icon"
+            android:layout_marginTop="5dp"/>
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:autofillHints=""
+            android:hint="@string/search_pins"
+            android:textSize="10dp"/>
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/SearchRes"
