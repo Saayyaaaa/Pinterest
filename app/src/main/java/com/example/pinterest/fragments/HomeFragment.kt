@@ -19,7 +19,6 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val adapter: HomeAdapter by lazy { HomeAdapter(::openImageDetail) }
 
-    // Initializing PinterestViewModel using viewModels delegate
     private val viewModel: PinterestViewModel by viewModels()
 
 
