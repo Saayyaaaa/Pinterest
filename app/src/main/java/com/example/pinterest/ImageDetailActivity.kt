@@ -4,6 +4,8 @@ package com.example.pinterest
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.pinterest.database.Favorites
+import com.example.pinterest.database.PinDB
 import com.example.pinterest.databinding.ActivityImageDetailBinding
 
 class ImageDetailActivity : AppCompatActivity() {
@@ -26,6 +28,17 @@ class ImageDetailActivity : AppCompatActivity() {
 
         binding.backButton.setOnClickListener {
             finish()
+        }
+
+        val db = PinDB.getDb(this)
+        binding.saveButton.setOnClickListener{
+            val favorite = Favorites(null,
+                binding.imageView.toString(),
+                binding.imageTitle.text.toString()
+            )
+            Thread{
+                db.getDao().insertFavorite(favorite)
+            }.start()
         }
     }
 }
