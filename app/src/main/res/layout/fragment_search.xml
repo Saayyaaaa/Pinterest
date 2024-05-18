@@ -17,17 +17,17 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/search_icon"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:src="@drawable/search_icon" />
 
         <EditText
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
             android:autofillHints=""
             android:hint="@string/search_pins"
-            android:textSize="10dp"/>
+            android:inputType="text"
+            android:textSize="10dp" />
 
     </LinearLayout>
 
@@ -39,7 +39,7 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         app:reverseLayout="false"
-        app:spanCount="2"/>
+        app:spanCount="2" />
 
 
 </LinearLayout>
