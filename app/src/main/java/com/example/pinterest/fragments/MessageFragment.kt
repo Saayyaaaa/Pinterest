@@ -6,6 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.pinterest.R
+import com.example.pinterest.adapter.SearchAdapter
+import com.example.pinterest.databinding.FragmentMessageBinding
+import com.example.pinterest.databinding.FragmentSearchBinding
+import com.example.pinterest.models.PinterestPins
+import com.example.pinterest.network.PinterestApiClient
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,7 +28,11 @@ class MessageFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private val pinterestService = PinterestApiClient.instance
+    private var _binding: FragmentMessageBinding? = null
+    private val binding get() = _binding!!
 
+    private val adapter: SearchAdapter by lazy { SearchAdapter() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -56,5 +67,17 @@ class MessageFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    private suspend fun getPins(name: String): List<PinterestPins> {
+        return withContext(Dispatchers.IO) {
+            val client = PinterestApiClient.instance
+            val response = client.fetchDataList(name)
+            if (response.isSuccessful) {
+                response.body() ?: emptyList()
+            } else {
+                emptyList()
+            }
+        }
     }
 }

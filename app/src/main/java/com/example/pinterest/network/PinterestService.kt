@@ -14,5 +14,11 @@ interface PinterestService {
 
     suspend fun getCatsByName(@Query("name") name: String): Response<List<PinterestPins>>
 
+    @GET("cats")
+    @Headers("X-Api-Key: wLrnkZ+qy6LvNHDs/NGNBQ==kTKUtCjVQgsgdfQP")
+
+    suspend fun fetchDataList(@Query("name") name: String): Response<List<PinterestPins>>
+
+
 
 }
