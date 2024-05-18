@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:contentDescription="@null"
         android:background="@drawable/round_corners"
         android:clipToOutline="true"
+        android:contentDescription="@null"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
         tools:srcCompat="@drawable/search_placeholder" />
@@ -25,33 +25,29 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        >
+        android:paddingEnd="5dp">
 
         <TextView
             android:id="@+id/pin_txt_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:layout_marginTop="10dp"
             tools:text="Что то такое" />
 
         <Space
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_more_vert_24"
             android:backgroundTint="@color/white"
-            />
+            android:src="@drawable/baseline_more_vert_24" />
 
     </LinearLayout>
-
-
 
 
 </LinearLayout>

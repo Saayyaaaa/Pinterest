@@ -12,4 +12,9 @@
     <string name="search_saved_idea">Search for your saved ideas</string>
     <string name="search_pins">Look for interesting things in Pinterest</string>
     <string name="other_pins">Other interesting pins</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="create">Create</string>
+    <string name="message">Message</string>
+    <string name="account">Account</string>
 </resources>

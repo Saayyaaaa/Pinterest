@@ -1,11 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.AccountFragment"
-    android:orientation="vertical"
     android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context=".fragments.AccountFragment"
 
     >
 
@@ -28,54 +28,52 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/pins_txt"
-            android:gravity="center"
-            android:textSize="25sp"
             android:layout_marginTop="10dp"
-            />
+            android:gravity="center"
+            android:text="@string/pins_txt"
+            android:textSize="25sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        >
+        android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/gray"
-        android:padding="5dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/search_icon"
-            android:layout_marginTop="5dp"/>
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/gray"
+            android:orientation="horizontal"
+            android:padding="5dp">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/search_saved_idea"
-            android:textSize="10sp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/search_icon" />
 
-    </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_saved_idea"
+                android:textSize="10sp" />
+
+        </LinearLayout>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_apps_24"
-            android:backgroundTint="@color/white"/>
+            android:backgroundTint="@color/white"
+            android:src="@drawable/baseline_apps_24" />
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/create_icon"
-            android:backgroundTint="@color/white"/>
+            android:backgroundTint="@color/white"
+            android:src="@drawable/create_icon" />
 
     </LinearLayout>
 
@@ -88,10 +86,7 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         app:reverseLayout="false"
-        app:spanCount="3"
-        />
+        app:spanCount="3" />
 
 
-
-
-    </LinearLayout>
+</LinearLayout>
